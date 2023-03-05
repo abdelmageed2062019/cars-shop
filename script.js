@@ -3,6 +3,7 @@ let dropDownIcon = document.getElementById("btn-dropdown");
 let dropdownCart = document.getElementById("cart-dropdown");
 let productsContainer = document.getElementById("products-container");
 let ShoppingCart = document.getElementById("shoping-cart");
+let cartAmount = document.getElementById("cart-amount");
 let modalContainer = document.getElementById("modal-container");
 let modal = document.getElementById("modal");
 let modalContent = document.getElementById("modal-content");
@@ -14,6 +15,14 @@ let basket = JSON.parse(localStorage.getItem("data")) || [];
 dropDownIcon.addEventListener("click", () => {
   dropdownCart.classList.toggle("show");
 });
+
+// document.addEventListener("click", (event) => {
+//   if (!event.target.matches("") || !event.target.matches("")) {
+//     dropdownCart.classList.remove("show");
+//   }
+// });
+
+// console.log(dropdownCart.classList.contains("show"));
 
 //GENERATE SHOP
 
@@ -29,7 +38,10 @@ let generateShop = () => {
                     </div>
                     <div class="namePrice">
                          <h3>${product_name}</h3>
-                         <span>${product_price} EGP</span>
+                         <span>${Number(product_price).toLocaleString("en-US", {
+                           style: "currency",
+                           currency: "USD",
+                         })}</span>
                     </div>
                     <div class="buy">
                     <button class="quick" onclick="showModal(${id})"> quick view </button>
@@ -47,6 +59,12 @@ let generateShop = () => {
 
 generateShop();
 
+let calculateTotal = () => {
+  cartAmount.innerHTML = basket.map((x) => x.item).reduce((x, y) => x + y, 0);
+};
+
+calculateTotal();
+
 //ADD ITEM TO CART
 
 let addToCart = (id) => {
@@ -60,6 +78,7 @@ let addToCart = (id) => {
     });
   }
 
+  calculateTotal();
   generateShop();
   showModal();
   generateCartItems();
@@ -79,6 +98,7 @@ let removeFromCart = (id) => {
   }
 
   basket = basket.filter((x) => x.item !== 0);
+  calculateTotal();
   generateShop();
   showModal();
   generateCartItems();
@@ -99,7 +119,13 @@ let generateCartItems = () => {
           <img src=${search.product_image} alt=${search.product_name} />
           <div class="item-details">
                <span class="name">${search.product_name}</span>
-               <span>${search.product_price}</span>
+               <span>${(Number(search.product_price) * item).toLocaleString(
+                 "en-US",
+                 {
+                   style: "currency",
+                   currency: "USD",
+                 }
+               )}</span>
           </div>
          </div>
          <div class="quantity">
@@ -136,6 +162,7 @@ let increment = (id) => {
     search.item += 1;
   }
 
+  calculateTotal();
   generateCartItems();
   localStorage.setItem("data", JSON.stringify(basket));
 };
@@ -151,7 +178,9 @@ let decrement = (id) => {
   else {
     search.item -= 1;
   }
+
   basket = basket.filter((x) => x.item !== 0);
+  calculateTotal();
   generateShop();
   generateCartItems();
   localStorage.setItem("data", JSON.stringify(basket));

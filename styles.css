@@ -6,7 +6,7 @@
  }
 
  body{
-     background-color: #ffeaed;
+    background: linear-gradient(18deg, rgba(2,0,36,1) 0%, rgba(9,9,121,0.9893207282913166) 12%, rgba(0,212,255,1) 100%);
      min-height: 100vh;
      display: grid;
      grid-template-rows: repeat(2, 1fr);
@@ -37,8 +37,19 @@
      list-style: none;
 }
 
+.navbar-list .amount {
+    right: 48.9%;
+    color: #000;
+    position: absolute;
+    top: 35px;
+    font-size: 22px;
+    font-weight: bold;  
+    cursor: pointer;
+}
+
 .navbar-list li svg {
     cursor: pointer;
+    fill: #fff;
 }
 
 #navbar {
@@ -54,8 +65,8 @@
      border: 1px solid black;
      background-color: white;
      z-index: 5;
-     margin-top: 40px;
-    position: absolute;
+     top: 85px;
+     position: absolute;
  }
 
 .show {
@@ -129,7 +140,13 @@
  .header h1{
      font-size: 4em;
      text-transform: uppercase;
-     color: #1b2741;
+     color: #fff;
+ }
+
+ @media screen and (max-width: 926px) {
+    .header h1 {
+        font-size: 2.5rem;
+    }
  }
 
  .products{
@@ -228,6 +245,7 @@
     top: 20px;
     font-size: 20px;
     cursor: pointer;
+    z-index: 1000;
  }
 
  .modal .modal-content img {
