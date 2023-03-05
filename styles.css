@@ -83,6 +83,7 @@
 
  .cart-item img {
      width: 30%;
+     mix-blend-mode: multiply;
    }
 
    .item-details {
@@ -163,6 +164,7 @@
  }
  .image img{
      width: 240px;
+     mix-blend-mode: multiply;
  }
 
  .namePrice{
@@ -232,6 +234,7 @@
     width: 100%;
     height: 80%;
     padding: 40px;
+    mix-blend-mode: multiply;
  }
 
  .modal .modal-details {
