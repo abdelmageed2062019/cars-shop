@@ -1,0 +1,255 @@
+*{
+     padding: 0;
+     margin: 0;
+     box-sizing: border-box;
+     font-family: 'Raleway', sans-serif;
+ }
+
+ body{
+     background-color: #ffeaed;
+     min-height: 100vh;
+     display: grid;
+     grid-template-rows: repeat(2, 1fr);
+     padding-top: 40px;
+     place-content: center;
+     align-items: center;
+ }
+
+ @media screen and (max-width: 1412px) {
+    body {
+        grid-template-rows: repeat(3, 1fr);
+    }
+ }
+
+ @media screen and (max-width: 926px) {
+    body {
+        grid-template-rows: repeat(5, 1fr);
+    }
+ }
+
+ .navbar-list {
+     display: flex;
+     flex-direction: row;
+     justify-content: flex-end;
+}
+
+ .navbar-list li {
+     list-style: none;
+}
+
+.navbar-list li svg {
+    cursor: pointer;
+}
+
+#navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cart-dropdown {
+     display: none;
+     flex-direction: column;
+     padding: 20px;
+     border: 1px solid black;
+     background-color: white;
+     z-index: 5;
+     margin-top: 40px;
+    position: absolute;
+ }
+
+.show {
+     display: flex;
+ }
+
+ .cart-items {
+     height: 240px;
+     display: flex;
+     flex-direction: column;
+     overflow: scroll;
+ }
+
+ .cart-item {
+     width: 100%;
+     display: flex;
+     height: 60px;
+ }
+
+ .cart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+ }
+
+ .cart-item img {
+     width: 30%;
+   }
+
+   .item-details {
+     width: 70%;
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     justify-content: center;
+     padding: 10px 20px;
+     font-size: 12px;
+   }
+
+   .item-details .name {
+     font-size: 16px;
+     font-weight: bold;
+   }
+
+   .quantity {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    height: 50%;
+    font-size: 15px;
+   }
+
+   .quantity h2 {
+    cursor: pointer;
+   }
+
+ .container{
+     width: 80vw;
+     height:80vh;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-around;
+     align-items: center;
+ }
+ .header{
+     width: 100%;
+     text-align: center;
+ }
+
+ .header h1{
+     font-size: 4em;
+     text-transform: uppercase;
+     color: #1b2741;
+ }
+
+ .products{
+     width: 100%;
+     align-self: center;
+     height: 70%;
+     display: flex;
+     justify-content: center;
+     flex-wrap: wrap;
+     gap: 40px;
+ }
+
+ .product{
+     position: relative;
+     background-color: #f7f6f9;
+     width: 350px;
+     height: 100%;
+     box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     padding: 20px 20px 40px;
+     border-radius: 10px;
+     transition: .3s;
+ }
+
+ .image{
+     width:100%;
+     height: 60%;
+     display: grid;
+     place-content: center;
+ }
+ .image img{
+     width: 240px;
+ }
+
+ .namePrice{
+     width: 100%;
+     display: flex;
+     justify-content: space-between;
+     margin-bottom: 3rem;
+
+ }
+
+ .namePrice h3{
+     font-size: 1.5em;
+     text-transform: capitalize;
+     color: #1b2741;
+ }
+
+ .namePrice span{
+     font-size: 1em;
+     color: #f67034;
+ }
+
+
+.buy{
+     position: absolute;
+     bottom: 20px;
+     right: 20px;
+ }
+ .buy button{
+     padding: 10px 20px;
+     border-radius: 7px;
+     border: none;
+     background-color: #1b2741;
+     color: #f7f6f9;
+     font-size: 12px;
+     text-transform: capitalize;
+     cursor: pointer;
+     transition: .5s;
+ }
+
+ .modal {
+    position: fixed;
+    top: 10%;
+    right: 25%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
+ }
+
+
+ .modal .close {
+    position: absolute;
+    color: #000;
+    right: 20px;
+    top: 20px;
+    font-size: 20px;
+    cursor: pointer;
+ }
+
+ .modal .modal-content img {
+    width: 100%;
+    height: 80%;
+    padding: 40px;
+ }
+
+ .modal .modal-details {
+    padding: 20px;
+    font-size: 1rem;
+    color: #000;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+ }
+
+ .modal .modal-details .name {
+    color: #f67034;
+    font-weight: bold;
+ }
+
+ .blur {
+    filter: blur(20px);
+    pointer-events: none;
+ }
