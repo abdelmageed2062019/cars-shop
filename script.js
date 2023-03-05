@@ -12,17 +12,19 @@ let basket = JSON.parse(localStorage.getItem("data")) || [];
 
 //SHOW AND HIDE CART DROPDOWN
 
-dropDownIcon.addEventListener("click", () => {
+function toggleDrop() {
   dropdownCart.classList.toggle("show");
-});
+}
 
-// document.addEventListener("click", (event) => {
-//   if (!event.target.matches("") || !event.target.matches("")) {
-//     dropdownCart.classList.remove("show");
-//   }
-// });
+document.onclick = (e) => {
+  if (!e.target.closest("#cart-dropdown")) {
+    if (dropdownCart.classList.contains("show")) {
+      dropdownCart.classList.remove("show");
+    }
+  }
+};
 
-// console.log(dropdownCart.classList.contains("show"));
+dropDownIcon.addEventListener("click", (e) => e.stopPropagation());
 
 //GENERATE SHOP
 
@@ -193,7 +195,7 @@ let generateModal = (id) => {
   let res = search[0];
   if (res === undefined) return;
   let { product_name, product_price, product_image } = res;
-  modalContant.innerHTML = `
+  modalContent.innerHTML = `
         <img src=${product_image} alt="car" />
         <div class="modal-details">
              <span class="name">${product_name}</span></span>
@@ -206,10 +208,12 @@ let generateModal = (id) => {
 
 let showModal = (id) => {
   let quickShow = document.querySelectorAll(".quick");
+
   quickShow.forEach((btn) => {
-    btn.addEventListener("click", () => {
+    btn.addEventListener("click", (e) => {
       appContainer.classList.add("blur");
       modal.style.display = "flex";
+      e.stopPropagation();
     });
   });
   let search = products.filter((x) => x.id === id);
@@ -238,3 +242,10 @@ let closeModal = (e) => {
 };
 
 closeModal();
+
+window.onclick = (e) => {
+  if (!e.target.closest("#modal")) {
+    appContainer.classList.remove("blur");
+    modal.style.display = "none";
+  }
+};
