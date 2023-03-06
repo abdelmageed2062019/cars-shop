@@ -20,7 +20,6 @@ document.onclick = (e) => {
   if (!e.target.closest("#cart-dropdown")) {
     if (dropdownCart.classList.contains("show")) {
       dropdownCart.classList.remove("show");
-      console.log("clicked");
     }
   }
 };
