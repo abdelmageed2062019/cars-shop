@@ -20,6 +20,7 @@ document.onclick = (e) => {
   if (!e.target.closest("#cart-dropdown")) {
     if (dropdownCart.classList.contains("show")) {
       dropdownCart.classList.remove("show");
+      console.log("clicked");
     }
   }
 };
@@ -49,7 +50,7 @@ let generateShop = () => {
                     <button class="quick" onclick="showModal(${id})"> quick view </button>
                     ${
                       search.item === undefined
-                        ? `<button onclick="addToCart(${id})"> add to cart </button>`
+                        ? `<button onclick="addToCart(${id})" > add to cart </button>`
                         : `<button onclick="removeFromCart(${id})"> remove from cart </button>`
                     }
                     </div>
@@ -131,9 +132,9 @@ let generateCartItems = () => {
           </div>
          </div>
          <div class="quantity">
-         <h2 onclick="decrement(${id})" class="inc">-</h2>
+         <h2 onclick="decrement(${id})" class="inc" id="inc">-</h2>
          <h2>${item}</h2>
-         <h2 onclick="increment(${id})" class="dec">+</h2>
+         <h2 onclick="increment(${id})" class="dec" id="dec">+</h2>
          </div>
          </div>
          
@@ -169,8 +170,6 @@ let increment = (id) => {
   localStorage.setItem("data", JSON.stringify(basket));
 };
 
-//DECREASE NUMBER OF ITEMS IN CART
-
 let decrement = (id) => {
   let selectedItem = id;
   let search = basket.find((x) => x.id === selectedItem);
@@ -182,26 +181,11 @@ let decrement = (id) => {
   }
 
   basket = basket.filter((x) => x.item !== 0);
+
   calculateTotal();
   generateShop();
   generateCartItems();
   localStorage.setItem("data", JSON.stringify(basket));
-};
-
-//MODAL FUNCTIONS GENERATOR
-
-let generateModal = (id) => {
-  let search = products.filter((x) => x.id === id);
-  let res = search[0];
-  if (res === undefined) return;
-  let { product_name, product_price, product_image } = res;
-  modalContent.innerHTML = `
-        <img src=${product_image} alt="car" />
-        <div class="modal-details">
-             <span class="name">${product_name}</span></span>
-             <span>${product_price} EGP</span>
-        </div>
-        `;
 };
 
 //SHOW MODAL FUNCTION
@@ -233,7 +217,7 @@ showModal();
 
 //CLOSE MODAL FUNCTION
 
-let closeModal = (e) => {
+let closeModal = () => {
   let close = document.getElementById("close");
   close.addEventListener("click", () => {
     appContainer.classList.remove("blur");
